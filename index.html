@@ -23,7 +23,7 @@
         }
 
         .logo-container img {
-            height: 65px; /* Altura aumentada para que el logo se vea mucho más grande */
+            height: 100px; /* Altura aumentada para que el logo se vea mucho más grande */
             object-fit: contain;
         }
 
@@ -123,6 +123,60 @@
             background-position: center;
             background-repeat: no-repeat;
         }
+        /* Estilos del Cuadro Flotante (Modal) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Asegura que esté por encima de todo */
+        }
+
+        .modal-content {
+            background-color: #E8B63E; /* Mismo amarillo de la cabecera */
+            border: 4px solid #ad1b45; /* Contorno personalizado */
+            color: #ad1b45; /* Color del texto */
+            padding: 30px 40px;
+            border-radius: 12px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .modal-content h2 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .modal-content p {
+            margin-bottom: 15px;
+            font-size: 15px;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        .modal-content button {
+            background-color: transparent;
+            color: #ad1b45;
+            border: 2px solid #ad1b45;
+            padding: 10px 40px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .modal-content button:hover {
+            background-color: #ad1b45; /* Fondo cambia al color del borde */
+            color: #E8B63E; /* Texto cambia al amarillo */
+        }
     </style>
 </head>
 <body>
@@ -160,7 +214,19 @@
 
     <main>
         <section class="hero"></section>
+    
     </main>
+
+<!-- Cuadro flotante de Privacidad y Advertencia -->
+    <div id="privacy-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Disclaimer & Privacy Consent</h2>
+            <p>This website is a fan-made, virtual airline for a Roblox community and is strictly for roleplay purposes.</p>
+            <p>It is <strong>NOT</strong> affiliated with, endorsed by, or in any way officially connected to DHL International GmbH or any of its affiliates.</p>
+            <p>By logging in with Discord, you consent to sharing your basic profile information (username and avatar) solely for authentication on this virtual platform.</p>
+            <button id="accept-btn">Accept</button>
+        </div>
+    </div>
 
     <script>
         // ==========================================
@@ -241,6 +307,16 @@
             userProfile.style.display = 'none';
             loginBtn.style.display = 'flex';
             dropdownMenu.classList.remove('show');
+        });
+        // ==========================================
+        // LÓGICA DEL CUADRO FLOTANTE (MODAL)
+        // ==========================================
+        const privacyModal = document.getElementById('privacy-modal');
+        const acceptBtn = document.getElementById('accept-btn');
+
+        // Ocultar el cuadro cuando se presiona "Accept"
+        acceptBtn.addEventListener('click', () => {
+            privacyModal.style.display = 'none';
         });
     </script>
 </body>
